@@ -1,13 +1,10 @@
-
+@Suppress("DSL_SCOPE_VIOLATION")
 plugins {
-    id("org.springframework.boot") apply false
-    id("io.spring.dependency-management") version "1.1.0"
-    kotlin("jvm")
-    kotlin("plugin.spring") apply false
-
-    kotlin("kapt")
-    // ktlint
-    id("org.jlleitschuh.gradle.ktlint") version "11.0.0"
+    alias(libs.plugins.spring.boot) apply false
+    alias(libs.plugins.kotlin.plugin.spring) apply false
+    alias(libs.plugins.kotlin.jvm)
+    alias(libs.plugins.kotlin.kapt)
+    alias(libs.plugins.ktlint)
 }
 
 allprojects {
@@ -15,10 +12,12 @@ allprojects {
     version = "0.0.1-SNAPSHOT"
     repositories {
         mavenCentral()
+        maven { url = uri("https://artifactory-oss.prod.netflix.net/artifactory/maven-oss-candidates") }
     }
 }
 
 subprojects {
+    val libs = rootProject.libs
     apply(plugin = "org.jetbrains.kotlin.jvm")
     apply(plugin = "org.jetbrains.kotlin.plugin.spring")
     apply(plugin = "org.springframework.boot")
@@ -30,11 +29,23 @@ subprojects {
     // ktlint
     apply(plugin = "org.jlleitschuh.gradle.ktlint")
 
+    configure<io.spring.gradle.dependencymanagement.dsl.DependencyManagementExtension> {
+        imports {
+            mavenBom("org.springframework.cloud:spring-cloud-dependencies:2022.0.1")
+        }
+    }
+
     dependencies {
-        implementation("com.fasterxml.jackson.module:jackson-module-kotlin")
-        implementation("org.jetbrains.kotlin:kotlin-reflect")
-        implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8")
-        testImplementation("org.springframework.boot:spring-boot-starter-test")
+        implementation(platform(libs.spring.cloud.dependencies))
+        implementation(libs.kotlin.reflect)
+        implementation(libs.kotlin.stdlib.jdk8)
+        implementation(libs.jackson.module.kotlin)
+        implementation(libs.spring.boot.configuration.processor)
+        implementation(libs.springdoc.openapi.starter.webmvc.ui)
+
+        testImplementation(libs.spring.boot.starter.test)
+        testImplementation("io.mockk:mockk:1.13.4")
+        testImplementation("com.navercorp.fixturemonkey:fixture-monkey-starter-kotlin:0.4.10")
     }
 
     java.sourceCompatibility = JavaVersion.VERSION_17
