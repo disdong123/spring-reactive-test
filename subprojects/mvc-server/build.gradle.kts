@@ -14,5 +14,5 @@ tasks.getByName("jar") {
 }
 
 application {
-    mainClass.set("kr.disdong.spring.study.mvc.server.master.MasterWebfluxServerApplicationKt")
+    mainClass.set("kr.disdong.spring.reactive.study.mvc.server.master.MasterWebfluxServerApplicationKt")
 }

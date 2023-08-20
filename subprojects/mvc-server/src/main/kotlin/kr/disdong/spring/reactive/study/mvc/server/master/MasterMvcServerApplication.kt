@@ -1,11 +1,11 @@
-package kr.disdong.spring.study.mvc.server.slave
+package kr.disdong.spring.reactive.study.mvc.server.master
 
 import org.springframework.boot.autoconfigure.SpringBootApplication
 import org.springframework.boot.runApplication
 
 @SpringBootApplication
-class SlaveMvcServerApplication
+class MasterMvcServerApplication
 
 fun main(args: Array<String>) {
-    runApplication<SlaveMvcServerApplication>(*args)
+    runApplication<MasterMvcServerApplication>(*args)
 }

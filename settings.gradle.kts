@@ -1,6 +1,7 @@
-rootProject.name = "spring-study"
+rootProject.name = "spring-reactive-study"
 
 include(
+    "subprojects:core",
     "subprojects:mvc-server",
     "subprojects:webflux-server"
 )
