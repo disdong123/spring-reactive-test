@@ -1,3 +1,3 @@
 dependencies {
-    implementation(libs.spring.boot.starter.web)
+    api("com.github.jasync-sql:jasync-mysql:2.2.0")
 }

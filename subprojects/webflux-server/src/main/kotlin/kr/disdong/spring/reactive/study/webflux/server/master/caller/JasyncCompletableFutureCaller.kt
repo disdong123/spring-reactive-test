@@ -11,8 +11,8 @@ import org.springframework.web.reactive.function.client.bodyToMono
 import reactor.core.publisher.Mono
 
 @RestController
-@RequestMapping("/thread-sleep")
-class ThreadSleepCaller {
+@RequestMapping("/jasync-completable-future")
+class JasyncCompletableFutureCaller {
     private val logger = LoggerFactory.getLogger(this::class.java)
     private val webClient = WebClient.create()
     private val restTemplate = RestTemplate()
@@ -21,7 +21,7 @@ class ThreadSleepCaller {
     fun callWithRestTemplate(idx: String): String? {
         logger.info("callWithRestTemplate()")
         return restTemplate.getForObject(
-            "http://localhost:8081/thread-sleep?idx={idx}",
+            "http://localhost:8081/jasync-completable-future?idx={idx}",
             String::class.java,
             idx
         )
@@ -31,7 +31,7 @@ class ThreadSleepCaller {
     fun callWithReactive(idx: String): Mono<String> {
         logger.info("callWithWebclient()")
         return webClient.get()
-            .uri("http://localhost:8081/thread-sleep?idx={idx}", idx)
+            .uri("http://localhost:8081/jasync-completable-future?idx={idx}", idx)
             .retrieve()
             .bodyToMono(String::class.java)
             .log()
@@ -41,7 +41,7 @@ class ThreadSleepCaller {
     suspend fun callWithCoroutine(idx: String): String {
         logger.info("callWithCoroutine()")
         return webClient.get()
-            .uri("http://localhost:8081/thread-sleep?idx={idx}", idx)
+            .uri("http://localhost:8081/jasync-completable-future?idx={idx}", idx)
             .retrieve()
             .bodyToMono<String>()
             .awaitSingle()
