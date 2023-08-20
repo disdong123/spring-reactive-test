@@ -1,11 +1,11 @@
-package kr.disdong.spring.study.mvc.server
+package kr.disdong.spring.study.webflux.server.master
 
 import org.springframework.boot.autoconfigure.SpringBootApplication
 import org.springframework.boot.runApplication
 
 @SpringBootApplication
-class ServerApplication
+class MasterWebfluxServerApplication
 
 fun main(args: Array<String>) {
-    runApplication<ServerApplication>(*args)
+    runApplication<MasterWebfluxServerApplication>(*args)
 }

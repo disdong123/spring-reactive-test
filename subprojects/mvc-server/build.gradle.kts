@@ -1,3 +1,6 @@
+plugins {
+    id("application")
+}
 dependencies {
     implementation(libs.spring.boot.starter.web)
 }
@@ -8,4 +11,8 @@ tasks.getByName("bootJar") {
 
 tasks.getByName("jar") {
     enabled = false
+}
+
+application {
+    mainClass.set("kr.disdong.spring.study.mvc.server.master.MasterWebfluxServerApplicationKt")
 }
