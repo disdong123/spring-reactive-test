@@ -1,5 +1,5 @@
 dependencies {
-    implementation(libs.spring.boot.starter.webflux)
+    implementation(libs.spring.boot.starter.web)
 }
 
 tasks.getByName("bootJar") {

@@ -1,4 +1,4 @@
-package kr.disdong.spring.study
+package kr.disdong.spring.study.mvc.server
 
 import org.springframework.boot.autoconfigure.SpringBootApplication
 import org.springframework.boot.runApplication

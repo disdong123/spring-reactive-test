@@ -1,6 +1,7 @@
 rootProject.name = "spring-study"
 
 include(
+    "subprojects:mvc-server",
     "subprojects:webflux-server"
 )
 
