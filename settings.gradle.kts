@@ -1,10 +1,10 @@
 rootProject.name = "spring-reactive-study"
 
 include(
-    "subprojects:core",
-    "subprojects:server-test",
-    "subprojects:mvc-server",
-    "subprojects:webflux-server"
+    "srt-core",
+    "srt-server-test",
+    "srt-mvc-server",
+    "srt-webflux-server"
 )
 
 // https://github.com/gradle/gradle/issues/9830
