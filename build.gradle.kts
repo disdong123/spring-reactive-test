@@ -12,7 +12,6 @@ allprojects {
     version = "0.0.1-SNAPSHOT"
     repositories {
         mavenCentral()
-        maven { url = uri("https://artifactory-oss.prod.netflix.net/artifactory/maven-oss-candidates") }
     }
 }
 
@@ -31,7 +30,7 @@ subprojects {
 
     configure<io.spring.gradle.dependencymanagement.dsl.DependencyManagementExtension> {
         imports {
-            mavenBom("org.springframework.cloud:spring-cloud-dependencies:2022.0.1")
+            mavenBom("org.springframework.cloud:spring-cloud-dependencies:2022.0.4")
         }
     }
 
