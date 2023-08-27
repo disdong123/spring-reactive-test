@@ -66,17 +66,6 @@ fun test(threadPoolSize: Int, loopCount: Int, testType: TestType) {
     logger.info("Total: ${functionTimer.totalTimeSeconds}")
 }
 
-/**
- * TODO
- *  테스트 환경:
- *   MasterServer 에서 SlaveServer 로 요청을 보냅니다.
- *   DB Thread pool 은 100, 각 reactor netty thread pool 은 10개입니다.
- *   요청은 동시에 20개를 보냅니다.
- *  테스트 결과:
- *   MasterServer 에서 RestTemplate 으로 요청하면 MasterServer 의 thread pool 이 blocking 되므로 2초 이상 걸립니다. (모든 WITH_REST_TEMPLATE)
- *   SlaveServer 에서 non-blocking 으로 요청 하더라도 SlaveServer 가 blocking 되어있으면 2초 이상 걸립니다. (THREAD_SLEEP_WITH_WEB_CLIENT_REACTIVE, THREAD_SLEEP_WITH_WEB_CLIENT_COROUTINE)
- *   나머지 경우는 모두 non-blocking call 이므로 1초정도 걸립니다.
- */
 fun main() {
     // test(20, 20, TestType.THREAD_SLEEP_WITH_REST_TEMPLATE) // 2 ~ . 연속으로 하면 그 다음건 4초정도 걸리는데 이유가?
     // test(20, 20, TestType.THREAD_SLEEP_WITH_WEB_CLIENT_REACTIVE) // 2 ~
